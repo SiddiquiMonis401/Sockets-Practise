@@ -24,13 +24,18 @@ function App() {
 
   const addMessageToRoom = (room, msg) => {
     setMessages(prev => {
-      const currentRoomMessageQueue = messages[room] || [];
+      const currentRoomMessageQueue = prev[room] || [];
       const updatedMessages = [...currentRoomMessageQueue,msg];
       return {
         ...prev,
         [room]: updatedMessages,
       }
     });
+  }
+
+  const onRoomSelect = (room) => {
+    setCurrentSelectedRoom(room);
+    socket.emit('join_room', room);
   }
 
 
@@ -51,23 +56,12 @@ function App() {
       onAddNewRoomToList(room);
     })
 
-  }, []);
-
- 
-
-  useEffect(() => {
-
     // This is dependent on currentSelectedRoom
     socket.on('new_message_from_server', ({msg, room}) => {
-      console.log('new message has been recieved',  currentSelectedRoom, room);
-      if(room === currentSelectedRoom) {
-        console.log('currentSelectedRoom', currentSelectedRoom);
-        addMessageToRoom(currentSelectedRoom, msg);
-      }
-    })
-  
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSelectedRoom]);
+        addMessageToRoom(room, msg);
+    });
+
+  }, []);
   // Sockets - end
 
   const onAddNewRoomToList = (room) => {
@@ -84,7 +78,7 @@ function App() {
         <CreateNewRoom roomsList={roomsList} onAddNewRoomToList={onAddNewRoomToList} socket={socket} />
       </div>
       <div className="chat-window">
-        <RoomsList currentSelectedRoom={currentSelectedRoom} setCurrentSelectedRoom={setCurrentSelectedRoom} roomsList={roomsList} />
+        <RoomsList currentSelectedRoom={currentSelectedRoom} setCurrentSelectedRoom={onRoomSelect} roomsList={roomsList} />
         <div className="sub-1-chat-window">
           <ChatBox roomsList={roomsList} currentSelectedRoom={currentSelectedRoom} messages={messages} />
           <AddMessage socket={socket} currentSelectedRoom={currentSelectedRoom} setMessages={addMessageToRoom} />
