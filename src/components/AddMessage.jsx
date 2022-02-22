@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
-function AddMessage({ setMessages, socket, currentSelectedRoom }) {
+function AddMessage({ setMessages, socket, currentSelectedRoom, username }) {
 
   const [message, setMessage] = useState('');
 
   const onSendNewMessage = () => {
-    setMessages(currentSelectedRoom, message);
-    socket.emit('new_message_from_client', { msg: message, room: currentSelectedRoom });
+
+    setMessages(currentSelectedRoom, message, username);
+    socket.emit('new_message_from_client', { msg: message, room: currentSelectedRoom, username });
     setMessage('');
+  
   }
 
   return (

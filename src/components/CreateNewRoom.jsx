@@ -16,7 +16,6 @@ function CreateNewRoom({ socket, onAddNewRoomToList, roomsList }) {
 
   return (
     <>
-        <div className="header_create_room">Create New Room to start Chat!</div>
         <div className="input_box_create_room">
         <input onChange={(event) => setRoomName(event.target.value)} value={roomName} type="text" placeholder="please enter your Room name" />
         <button onClick={onNewRoomCreation}>

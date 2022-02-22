@@ -2,11 +2,22 @@
   text-align: center;
   width: 100vw;
   font-family: 'Architects Daughter', cursive;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.header_section {
+ min-height: 100px;
+ height: auto;
 }
 
 .header {
@@ -21,11 +32,12 @@
 .create-room-container {
   width: 100%;
   height: 100px;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
 
 .create-room-container .input_box_create_room {
   display: flex;
-  padding: 0 200px;
 }
 .create-room-container .input_box_create_room input {
   flex-grow: 1;
@@ -43,7 +55,6 @@
 
 .rooms_list {
   width: 100px;
-  height: 400px;
   border: 1px solid var(--border);
 }
 
@@ -71,8 +82,11 @@
 }
 
 .chat-window {
-  padding: 0 200px;
+  padding: 0;
   display: flex;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  flex-grow: 1;
 }
 
 .selected-room {
@@ -100,16 +114,73 @@
 .add-message {
   width: 100%;
   display: flex;
+  height: 80px;
 }
 
 .add-message input {
-  width: 90%;
+  flex-grow: 1;
+  margin: 0 10px;
 }
 
 .add-message button {
-  
+  margin: 0 10px;
+  width: 100px;
 }
 
 .rooms_list {
   width: 200px;
+}
+
+.message_section {
+  width: 100%;
+  display: flex;
+  padding: 5px 10px;
+}
+
+.message_section .user_info .user_avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(var(--blue), var(--purple));
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.message_section .message {
+  min-width: 200px;
+  width: auto;
+  min-height: 50px;
+  background: linear-gradient(var(--blue-light), var(--purple-light));
+  text-align: left;
+  padding: 0 20px;
+}
+
+.message_section .message p {
+  margin: 0;
+}
+
+.user-name-section {
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-name-section button, .user-name-section input {
+  width: 100%;
+  height: 50px;
+}
+
+.user-name-section img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
 }

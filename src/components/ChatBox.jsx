@@ -27,7 +27,21 @@ function ChatBox({messages, currentSelectedRoom, roomsList}) {
         
     return (
         <div className="chat-box">
-            {messages[currentSelectedRoom]?.map((msg, index) => <p key={index}>{msg}</p>)}
+            {messages[currentSelectedRoom]?.map(({msg, username}, index) => <div className="message_section" key={index}>
+                <div className="user_info">
+                    <div className="user_avatar">
+                        {username[0]}
+                    </div>                          
+                </div>
+                <div className="message">
+                    <p>
+                        {username}
+                    </p>
+                    <p>
+                        {msg}
+                    </p>
+                </div>        
+            </div>)}
         </div>
     )
 }
